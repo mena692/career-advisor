@@ -472,11 +472,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   debug
-<<<<<<< HEAD
   devise
-=======
-  devise (~> 5.0)
->>>>>>> master
   dotenv-rails
   font-awesome-sass (~> 6.1)
   image_processing (~> 1.2)
