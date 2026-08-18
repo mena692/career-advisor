@@ -1,0 +1,2 @@
+class CareerPathsController < ApplicationController
+end
