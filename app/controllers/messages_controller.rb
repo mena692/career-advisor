@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  SYSTEM_PROMPT = "You are a Career Advisor.\n\nI am a student at the Le Wagon Bootcamp, I will soon decide on which bootcamp I will take (software development, data analytics, data science).\n\nHelp me learn about each career path, what the job entails, and what skills I need, based on my goals and existing skills.\n\nAnswer concisely in Markdown."
+  SYSTEM_PROMPT = "You are a Career Advisor.\n\nHelp the user understand and explore the specific career path provided in the current context.\n\nFocus only on that career path. Explain what the career entails, relevant roles, required skills, learning opportunities, and practical next steps based on the user's goals and existing skills.\n\nDo not discuss other career paths unless the user explicitly asks for a comparison.\n\nAnswer concisely in Markdown."
 
   def new
     @message = Message.new
@@ -13,11 +13,28 @@ class MessagesController < ApplicationController
     @message.role = "user"
     if @message.save
       @ruby_llm_chat = RubyLLM.chat
-      @response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: @response.content, chat: @chat)
-      redirect_to chat_path(@chat)
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      @assistant_message = @chat.messages.create(
+        role: "assistant",
+        content: response.content
+      )
+      @chat.generate_title_from_first_message
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      render "chats/show", status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update(
+            "new_message_container",
+            partial: "messages/form",
+            locals: { chat: @chat, message: @message }
+          )
+        end
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
 
@@ -35,7 +52,7 @@ class MessagesController < ApplicationController
   end
 
   def career_path_context
-    "Here we have the full description of the career path?: #{@career_path.description}."
+    "The career path the user is currently exploring is #{@career_path.name}. Here is its description: #{@career_path.description}"
   end
 
   def instructions
