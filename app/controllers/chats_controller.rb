@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @career_path = career_path.find(params[:career_path_id])
+    @career_path = CareerPath.find(params[:career_path_id])
 
     @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.career_path = @career_path
