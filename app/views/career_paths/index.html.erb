@@ -1,0 +1,10 @@
+<h1>Career Paths</h1>
+
+<% @career_paths.each do |career_path| %>
+  <div>
+    <h2>
+      <%= link_to career_path.name, career_path_path(career_path) %>
+    </h2>
+    <p><%= career_path.description %></p>
+  </div>
+<% end %>
