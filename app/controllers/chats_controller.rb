@@ -14,7 +14,7 @@ class ChatsController < ApplicationController
       redirect_to chat_path(@chat)
     else
       @chats = @career_path.chats.where(user: current_user)
-      # render "career_path/show" <---- not sure if i should do something here to make it work...
+      render "career_path/show"
     end
   end
 
@@ -31,6 +31,6 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(:name, :description, :skills)
+    params.require(:chat).permit(:title)
   end
 end
