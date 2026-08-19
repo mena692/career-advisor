@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  SYSTEM_PROMPT = "You are a Career Advisor.\n\nI am a student at the Le Wagon Bootcamp, I will soon decide on which bootcamp I will take (software development, data analytics, data science).\n\nHelp me learn about each career path, what the job entails, and what skills I need, based on my goals and existing skills.\n\nAnswer concisely in Markdown."
+  SYSTEM_PROMPT = "You are a Career Advisor.\n\nI am a student at the Le Wagon Bootcamp, I will soon decide on which bootcamp I will take (software development, data analytics, data science).\n\nHelp me learn about each career path, what the job entails, and what skills I need, based on my goals and existing skills. If we are in the context of one career path, dont go to other contexts but stay in that one. So advice is based on career path we are in.\n\nAnswer concisely in Markdown."
 
   def new
     @message = Message.new
