@@ -1,1 +1,63 @@
 // Specific CSS for your home-page
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.cards ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.card {
+  background-size: cover;
+  background-position: center;
+  background-color: #004AAD;
+  height: 150px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 22px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  position: relative;
+  transition: background-color 0.5s;
+}
+
+.card:hover {
+  background-color: #0065e9;
+}
+
+li {
+  list-style-type: none;
+}
+
+.card-text {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.col {
+  margin-left: 4rem;
+  margin-top: 1rem;
+}
+
+.col-md-3 {
+  margin-top: 1rem;
+}
+
+.greet-user {
+  margin-left: 4rem;
+}
+
+.choose {
+  margin-left: 4rem;
+}

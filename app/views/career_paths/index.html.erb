@@ -1,10 +1,18 @@
-<h1>Career Paths</h1>
-
-<% @career_paths.each do |career_path| %>
-  <div>
-    <h2>
-      <%= link_to career_path.name, career_path_path(career_path) %>
-    </h2>
-    <p><%= career_path.description %></p>
+<h1 class="greet-user">Hello <strong><%= current_user.email %>!</strong></h1>
+<br>
+<h2 class="choose">Choose a career path to ask a question</h2>
+<br>
+<div class="container">
+  <div class="cards">
+    <ul>
+    <% @career_paths.each do |career_path| %>
+      <li>
+        <div class="card" style="height: 300px;">
+          <%= link_to "#{career_path.name}", career_path_path(career_path), class: "card-text" %>
+        </div>
+        <p><%= truncate(career_path.description, length: 100) %></p>
+      </li>
+    <% end %>
+    </ul>
   </div>
-<% end %>
+</div>

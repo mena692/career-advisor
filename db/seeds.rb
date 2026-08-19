@@ -7,6 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+CareerPath.destroy_all
 
 CareerPath.create!(
   name: "Frontend Developer",
@@ -18,12 +19,12 @@ CareerPath.create!(
   For developers who enjoy creative work, front end web development could be an excellent career. Not only will you code other people's designs but you'll also have some say in the overall creative direction of a website.
 
   If you are more interested in the “brains” behind a website, then back end or full stack web development may be for you. Whatever you choose, one thing is for sure—careers in web development all afford lucrative salaries, great career prospects, and unique responsibilities.",
-  skills: [ "HTML, CSS, JS",
+  skills_array: ["HTML, CSS, JS",
   "Frontend framework such as React (online learning path post bootcamp)",
   "Responsive Design",
   "UI & UX Design",
   "Querying APIs",
-  "Soft skills: creativity, adaptability" ],
+  "Soft skills: creativity, adaptability"],
 )
 
 CareerPath.create!(
@@ -35,12 +36,12 @@ CareerPath.create!(
   If you are more interested in the “brains” behind a website, then back end development may be for you. You will spend your days building algorithms to make informed decisions, spend a lot of time on coding challenges and working with more complex programming languages.
 
   You will also be involved with the behind-the-scenes architecture of the website, often working with different programming languages and frameworks dependent on the company.",
-  skills: [ "Ruby or Python",
+  skills_array: ["Ruby or Python",
   "Ruby on Rails or other backend frameworks",
   "SQL and databases",
   "Building and working with APIs",
   "Writing tests",
-  "Algorithms and data structures" ],
+  "Algorithms and data structures"],
 )
 
 CareerPath.create!(
@@ -60,7 +61,7 @@ CareerPath.create!(
   Most full-stack developers are employed on mid-to-large teams. This  is because there is a greater need for people who focus all their time  on a particular topic. With that said, some smaller teams may have  full-stack web developers.
 
   You can expect to use your full-stack web development skills in some  of your web projects. Say, for instance, you want to build a to-do list front-end app. You may decide to write a back-end app to store data.  Such a project involves working with the front-end, back-end, and a database.",
-  skills: [ "HTML, CSS, JS",
+  skills_array: ["HTML, CSS, JS",
   "Frontend framework such as React (online learning path post bootcamp)",
   "Responsive Design",
   "UI & UX Design",
@@ -71,7 +72,7 @@ CareerPath.create!(
   "SQL and databases",
   "Building and working with APIs",
   "Writing tests",
-  "Algorithms and data structures" ],
+  "Algorithms and data structures"],
 )
 
 CareerPath.create!(
@@ -87,7 +88,7 @@ CareerPath.create!(
   That makes them quite different from data scientists (and data analysts), who certainly have programming skills, but who typically aren't engineers. It's not uncommon for data scientists to hand over their work (e.g., a recommendation system) to data engineers for actual implementation.
 
   And while it's data analysts and data scientists who are doing the analysis, it's typically data engineers who are building the data pipelines and other systems necessary to make sure that everyone has easy access to the data they need (and that no one has access to the data who shouldn't).",
-  skills: [ "Python",
+  skills_array: ["Python",
   "SQL and databases",
   "Docker",
   "Data warehousing (post bootcamp)",
@@ -95,7 +96,7 @@ CareerPath.create!(
   "Machine learning knowledge",
   "Google Cloud Platform and cloud architecture",
   "Data pipeline architecture",
-  "Building analytical tools" ],
+  "Building analytical tools"],
 )
 
 CareerPath.create!(
@@ -109,7 +110,7 @@ CareerPath.create!(
   A Data Scientist is the captain of the data team and has a strong understanding of all areas of data: programming, architecture, modelling, analysis. At the same time, they also have a good business brain and know how to deal with key stakeholders at a management level.
 
   As a result, a Data Scientist has a senior role. They should have experience in programming, business and have worked with large data sets before.",
-  skills: [ "Python",
+  skills_array: ["Python",
   "SQL and databases",
   "Machine Learning and/or Deep Learning (often specialised in one)",
   "Data Warehousing (after the bootcamp)",
@@ -117,7 +118,7 @@ CareerPath.create!(
   "Data visualisation",
   "Data analysis",
   "Storytelling skills",
-  "Strong business acumen" ],
+  "Strong business acumen"],
 )
 
 CareerPath.create!(
@@ -132,14 +133,14 @@ CareerPath.create!(
   end
 
   Unlike Data Engineers and Data Scientists, there are mostly entry-level or mid-level roles and a great place to start a career in data. The majority of alumni from data start here, before progressing into data engineering, machine learning or deep learning when within the company.",
-  skills: [ "SQL",
+  skills_array: ["SQL",
   "Foundation knowledge Python",
   "Good knowledge Excel (often a requirement)",
   "Preparing reports for stakeholders",
   "Data processing",
   "Data visualisation",
   "Statistics",
-  "Data cleaning and organisation" ],
+  "Data cleaning and organisation"],
 )
 
 CareerPath.create!(
@@ -153,13 +154,13 @@ CareerPath.create!(
   You will have the opportunity to learn about other industries and deep-dive into businesses. Combining your experience in web development or data and a degree or work experience in business, many alumni land great roles, often in digital department of multinational consultancies (Accenture, BCG DV, Deloitte Digital to name but a few).
 
   Disclaimer: there are a variety of consultants where our alumni land jobs (Data Consultants, Management Consultants, Digital Consultants). The most important thing to think about is where your knowledge and hard skills lie - this will dictate you to which job roles you should look out for.",
-  skills: [ "Foundation knowledge of programming and data analysis",
+  skills_array: ["Foundation knowledge of programming and data analysis",
   "APIs",
   "Startup and No-Code toolkit",
   "Overview of technological trends and solutions",
   "Project Management",
   "Digital marketing and workflows",
-  "Presentation skills" ],
+  "Presentation skills"],
 )
 
 CareerPath.create!(
@@ -177,11 +178,11 @@ CareerPath.create!(
   It is similar role to a technical Consultant. Both are working directly with clients, analysing their primary problems and trying to think of a technological solution.
 
   The difference is that a Solutions Engineer is primarily trying to build a customised product and make a sale. A Consultant meanwhile is advising a client and billing by the hour, day or project.",
-  skills: [ "Good programming knowledge (Ruby or Python)",
+  skills_array: ["Good programming knowledge (Ruby or Python)",
   "SQL and databases",
   "Presentation skills",
   "Solutions sales",
-  "Testing and quality assurance" ],
+  "Testing and quality assurance"],
 )
 
 CareerPath.create!(
@@ -199,7 +200,7 @@ CareerPath.create!(
   A Growth Manager must be creative, resourceful and have a good knowledge of tools and technologies. Often, they are the pioneers of a business: testing new ideas to drive the growth of a business. They are masters of A/B testing and lean methodology
 
   However, it should not be confused with that of the Product Manager, who guides the development and growth of a product, but not of the entire organisation. A Growth Manager's primary metric is about customer acquisition and revenue, rather than users and engagement (although the two often overlap).",
-  skills: [ "SQL and databases",
+  skills_array: ["SQL and databases",
   "A/B Testing and lean methodology",
   "Product and business analysis",
   "Basic Statistics",
@@ -223,13 +224,13 @@ CareerPath.create!(
 
   Many PMs go on to become founders in the long run. It is actually the best entrance route to becoming a founder of a startup, as you then start to have real empathy with the user.",
 
-  skills: [ "Foundation programming in Ruby or Python",
+  skills_array: ["Foundation programming in Ruby or Python",
   "Good SQL knowledge",
   "Good business acumen and stakeholder management",
   "Create a product roadmap",
   "UX Research",
   "UI Design",
-  "Management techniques (SCRUM, Agile)" ],
+  "Management techniques (SCRUM, Agile)"],
 )
 
 CareerPath.create!(
@@ -254,12 +255,12 @@ CareerPath.create!(
   Alumni who typically become founders after the bootcamp already have work and management experience. Finding co-founders, building an MVP, getting your first users and testing a model is the easy part! Once you have all of this, you then have to grow a team and manage people to build your vision. This is why experience is so important!
 
   It's well known that finding a co-founder and building a startup is like getting married, but harder. So a good Founder will always have a crazy and adventurous streak in them to get them through the ups and downs of startup life.",
-  skills: [ "Clear idea for a product or service",
+  skills_array: ["Clear idea for a product or service",
   "Good knowledge of startup toolkit",
   "Goal-setting and target tracking",
   "Management",
   "Creativity to build and test an MVP",
-  "Perseverance!" ],
+  "Perseverance!"],
 )
 
 CareerPath.create!(
@@ -279,7 +280,7 @@ CareerPath.create!(
   Further to this, there is the danger of over-working and burning out, if you do not have the self-discipline to take breaks.
 
   Often alumni become freelancer, when they are going through a change and not sure about the next steps. Many alumni will TA or teach for Le Wagon while upskilling themselves and running some of their own projects.",
-  skills: ["Web Development or Data fullstack (dependent on the bootcamp)",
+  skills_array: ["Web Development or Data fullstack (dependent on the bootcamp)",
   "Understanding clients' needs",
   "Negotiation and setting a rate",
   "Time-Management"],
