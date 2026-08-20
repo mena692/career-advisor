@@ -83,6 +83,7 @@ class MessagesController < ApplicationController
       @assistant_message.content += chunk.content
       broadcast_replace(@assistant_message)
     end
+    @assistant_message.save
   end
 
   def broadcast_replace(message)
