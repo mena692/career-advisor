@@ -12,14 +12,15 @@ class MessagesController < ApplicationController
     @message.chat = @chat
     @message.role = "user"
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       @assistant_message = @chat.messages.create(
         role: "assistant",
-        content: response.content
+        content: ""
       )
+
+      ask_llm
+
       @chat.generate_title_from_first_message
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to chat_path(@chat) }
@@ -47,6 +48,8 @@ class MessagesController < ApplicationController
 
   def build_conversation_history
     @chat.messages.each do |message|
+      next if message.content.blank?
+
       @ruby_llm_chat.add_message(message)
     end
   end
@@ -61,5 +64,29 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def ask_llm
+    @ruby_llm_chat = RubyLLM.chat
+
+    build_conversation_history
+
+    @ruby_llm_chat.with_instructions(instructions)
+
+    @ruby_llm_chat.ask(@message.content) do |chunk|
+      next if chunk.content.blank?
+
+      @assistant_message.content += chunk.content
+      broadcast_replace(@assistant_message)
+    end
+  end
+  
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(
+      @chat,
+      target: helpers.dom_id(message),
+      partial: "messages/message",
+      locals: { message: message }
+    )
   end
 end
