@@ -25,6 +25,7 @@ CareerPath.create!(
   "UI & UX Design",
   "Querying APIs",
   "Soft skills: creativity, adaptability"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Frontend_Developer.png",
 )
 
 CareerPath.create!(
@@ -42,6 +43,7 @@ CareerPath.create!(
   "Building and working with APIs",
   "Writing tests",
   "Algorithms and data structures"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221126/Backend_Developer.png",
 )
 
 CareerPath.create!(
@@ -73,6 +75,7 @@ CareerPath.create!(
   "Building and working with APIs",
   "Writing tests",
   "Algorithms and data structures"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221128/Fullstack_Developer.png",
 )
 
 CareerPath.create!(
@@ -97,6 +100,7 @@ CareerPath.create!(
   "Google Cloud Platform and cloud architecture",
   "Data pipeline architecture",
   "Building analytical tools"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Data_Engineer.png",
 )
 
 CareerPath.create!(
@@ -119,6 +123,7 @@ CareerPath.create!(
   "Data analysis",
   "Storytelling skills",
   "Strong business acumen"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Data_Scientist.png",
 )
 
 CareerPath.create!(
@@ -141,6 +146,7 @@ CareerPath.create!(
   "Data visualisation",
   "Statistics",
   "Data cleaning and organisation"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Data_Analyst.png",
 )
 
 CareerPath.create!(
@@ -161,6 +167,7 @@ CareerPath.create!(
   "Project Management",
   "Digital marketing and workflows",
   "Presentation skills"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Digital_C.png",
 )
 
 CareerPath.create!(
@@ -183,6 +190,7 @@ CareerPath.create!(
   "Presentation skills",
   "Solutions sales",
   "Testing and quality assurance"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221129/Solutions_Engineer.png",
 )
 
 CareerPath.create!(
@@ -206,6 +214,7 @@ CareerPath.create!(
   "Basic Statistics",
   "UX research",
   "Web scraping and APIs"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221128/Growth_Marketer.png",
 )
 
 CareerPath.create!(
@@ -231,6 +240,7 @@ CareerPath.create!(
   "UX Research",
   "UI Design",
   "Management techniques (SCRUM, Agile)"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221128/Product_Manager.png",
 )
 
 CareerPath.create!(
@@ -261,6 +271,7 @@ CareerPath.create!(
   "Management",
   "Creativity to build and test an MVP",
   "Perseverance!"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Founder.png",
 )
 
 CareerPath.create!(
@@ -284,4 +295,5 @@ CareerPath.create!(
   "Understanding clients' needs",
   "Negotiation and setting a rate",
   "Time-Management"],
+  image_url: "https://res.cloudinary.com/vo8em5cs/image/upload/v1787221127/Freelancer.png",
 )
