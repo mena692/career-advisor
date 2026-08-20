@@ -1,8 +1,20 @@
 <h1 class="greet-user">Hello <strong><%= current_user.email %>!</strong></h1>
 <br>
-<h2 class="choose">Choose a career path to ask a question</h2>
-<br>
 <div class="container">
+
+<h2>All your saved advices</h2>
+
+    <ul>
+      <% if @saved_messages.any?%>
+      <% @saved_messages.each do |saved_message|%>
+      <li><p><%=saved_message.content%></p></li>
+      <% end %>
+      <% end %>
+    </ul>
+
+
+<h2 class="choose">Choose a career path to ask a question</h2>
+
   <div class="cards">
     <ul>
     <% @career_paths.each do |career_path| %>

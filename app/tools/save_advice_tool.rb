@@ -6,8 +6,8 @@ class SaveAdviceTool < RubyLLM::Tool
   end
 
   def execute
-    message = @chat.messages.where(role: "assistant").order(:created_at).last
-    message.update(saved: true)
+    message = @chat.messages.where(role: "assistant").where.not(content: [nil, ""]).order(:created_at).last
+    message.update!(saved: true)
     @saved_message = message
 
     { status: "saved", message_id: message.id, preview: message.content.truncate(80) }
