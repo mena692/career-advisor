@@ -1,0 +1,15 @@
+.new-button {
+  background: linear-gradient(135deg, #F9a825, #fff8e1);
+  color: #004AAD;
+  border-radius: 10px;
+  border-style: none;
+  text-decoration: none;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.6s ease;
+}
+
+.new-button:hover {
+  background: linear-gradient(170deg, #F9a825, #fff8e1);
+  transform: translateY(-3px);
+}

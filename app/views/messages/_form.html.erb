@@ -1,4 +1,10 @@
 <%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: "Ask a question", required: true, placeholder: "Ask me for advices for your careers" %>
-  <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <%= f.input :content,
+            label: false,
+            required: true,
+            input_html: { rows: 2 },
+            placeholder: "Ask me anything about this career path..." %>
+  <div class="d-flex justify-content-end">
+    <%= f.button :submit, "Ask LLM", class: "new-button" %>
+</div>
 <% end %>

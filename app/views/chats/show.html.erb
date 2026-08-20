@@ -1,12 +1,29 @@
 <%= turbo_stream_from @chat %>
-<%= link_to "← #{@chat.career_path.name}", career_path_path(@chat.career_path) %>
 
-<h1 id="chat_title"><%= @chat.title %></h1>
+<div class="container chat-container">
 
-<div id="messages">
-  <%= render "messages/messages", messages: @chat.messages %>
-</div>
+  <%= link_to "← #{@chat.career_path.name}",
+              career_path_path(@chat.career_path),
+              class: "chat-back-link" %>
 
-<div id="new_message_container">
-  <%= render "messages/form", chat: @chat, message: @message %>
+  <h1 id="chat_title"><%= @chat.title %></h1>
+
+  <hr>
+
+  <div id="messages">
+
+    <% if @chat.messages.empty? %>
+      <div class="empty-chat-message">
+        <p>Start the conversation 👋</p>
+        <small>Ask about skills, responsibilities, salary, or next steps.</small>
+      </div>
+    <% end %>
+
+    <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
+  </div>
+
+  <div id="new_message_container">
+    <%= render "messages/form", chat: @chat, message: @message %>
+  </div>
+
 </div>
