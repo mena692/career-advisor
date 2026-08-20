@@ -1,52 +1,110 @@
 // Specific CSS for your home-page
+
 .container {
-  display: flex;
   width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.cards {
+  width: 100%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
 }
 
 .cards ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
+@media (max-width: 992px) {
+  .cards ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .cards {
+    padding: 1rem;
+  }
+
+  .cards ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    height: 220px;
+  }
+}
+
 .card {
+  width: 100%;
+  height: 300px;
+
   background-size: cover;
   background-position: center;
-  background-color: #004AAD;
-  height: 150px;
+
   border-radius: 20px;
+  overflow: hidden;
+
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
   display: flex;
   align-items: center;
   justify-content: space-around;
+
   font-size: 22px;
-  color: white;
   font-weight: bolder;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+
   position: relative;
-  transition: background-color 0.5s;
+  transition: box-shadow 0.5s;
 }
 
-.card:hover {
-  background-color: #0065e9;
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.3)
+  );
+
+  border-radius: 20px;
+  transition: opacity 0.5s;
+}
+
+.card:hover::before {
+  opacity: 0;
+}
+
+.card-text {
+  background-color: #fff8e1;
+  color: #002d72;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  padding: 1rem;
+
+  position: relative;
+  z-index: 1;
+}
+
+.card-text:hover {
+  color: #1e88e5;
 }
 
 li {
   list-style-type: none;
 }
 
-.card-text {
-  color: white;
-  text-decoration: none;
-  text-align: center;
-}
-
 .col {
-  margin-left: 4rem;
   margin-top: 1rem;
 }
 
@@ -54,10 +112,7 @@ li {
   margin-top: 1rem;
 }
 
-.greet-user {
-  margin-left: 4rem;
-}
-
+.greet-user,
 .choose {
-  margin-left: 4rem;
+  margin-left: 2rem;
 }
