@@ -1,25 +1,27 @@
 <div class="row">
-  <div class="col">
-    <h1><%= @career_path.name %></h1><br>
-    <img src="<%= @career_path.image_url %>" alt="<% @career_path.name %>" width="50%">
-    <br><br><br>
-    <h2>What is a <%= @career_path.name %> ?</h2><br>
+  <div class="col career">
+    <%= link_to "← Back to list of career paths", career_paths_path, class: "back-button" %>
+    <br><br>
+    <div class="career-hero" style="background-image: url('<%= @career_path.image_url %>')">
+    </div>
+    <br>
+    <h1>What is a <%= @career_path.name %> ?</h1><br>
     <%= @career_path.description %>
     <br><br>
-    <h2>Skills required</h2>
-    <ul>
+    <h1>Skills required</h1><br>
+    <ul class="skills-list">
       <% @career_path.skills_array.each do |skill| %>
-      <li><%= skill %></li>
+      <li class="skill"><%= skill %></li>
       <% end %>
     </ul>
   </div>
 
   <div class="col-md-3">
-    <h2>Chats</h2>
+    <h1 class="chats">Chats</h1>
 
     <div class="mb-4">
       <% if @chats.any? %>
-        <ul>
+        <ul class="chats-list">
           <% @chats.each do |chat| %>
             <li><%= link_to chat.title, chat_path(chat) %></li>
           <% end %>
@@ -30,6 +32,6 @@
     </div>
     <%= button_to "New chat",
                   career_path_chats_path(@career_path),
-                  class: "btn btn-primary" %>
+                  class: "new-button" %>
   </div>
 </div>
