@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  SYSTEM_PROMPT = "You are a Career Advisor.\n\nHelp the user understand and explore the specific career path provided in the current context.\n\nFocus only on that career path. Explain what the career entails, relevant roles, required skills, learning opportunities, and practical next steps based on the user's goals and existing skills.\n\nDo not discuss other career paths unless the user explicitly asks for a comparison.\n\nAnswer concisely in Markdown."
+  SYSTEM_PROMPT = "You are a Career Advisor.\n\nHelp the user understand and explore the specific career path provided in the current context.\n\nFocus only on that career path. Explain what the career entails, relevant roles, required skills, learning opportunities, and practical next steps based on the user's goals and existing skills.\n\nDo not discuss other career paths unless the user explicitly asks for a comparison or say he don't like this path.\n\nYou have access to tools:\n\n- Search for alternative career paths in our database when the user asks for another career path or says they don't like their current career path.\n\n- Save your previous answer as saved advice when the user asks to save, bookmark or keep it. Only save when the user asks for it, never on your own, and confirm in one short sentence once it is saved.\n\nAnswer concisely in Markdown."
 
   def new
     @message = Message.new
@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.role = "user"
+
     if @message.save
       @assistant_message = @chat.messages.create(
         role: "assistant",
@@ -70,6 +71,9 @@ class MessagesController < ApplicationController
     @ruby_llm_chat = RubyLLM.chat
 
     build_conversation_history
+    @ruby_llm_chat.with_tool(SearchCareerPathsTool.new(career_path: @career_path))
+
+    @ruby_llm_chat.with_tool(SaveAdviceTool.new(chat: @chat))
 
     @ruby_llm_chat.with_instructions(instructions)
 
@@ -79,8 +83,9 @@ class MessagesController < ApplicationController
       @assistant_message.content += chunk.content
       broadcast_replace(@assistant_message)
     end
+    @assistant_message.save
   end
-  
+
   def broadcast_replace(message)
     Turbo::StreamsChannel.broadcast_replace_to(
       @chat,
