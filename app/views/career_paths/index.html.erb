@@ -1,29 +1,60 @@
-<h1 class="greet-user">Hello <%= current_user.email %>!</h1>
+<br><h5>Hello, <strong><%= current_user.email %></strong>!</h5>
 <br>
 <div class="container">
-
-<h2>All your saved advices</h2>
-
-    <ul>
-      <% if @saved_messages.any?%>
-      <% @saved_messages.each do |saved_message|%>
-      <li><p><%=saved_message.content%></p></li>
+  <br>
+  <h1 class="choose">Choose a career path to ask a question</h1>
+  <br>
+    <div class="cards">
+      <ul>
+      <% @career_paths.each do |career_path| %>
+        <li>
+          <div class="card" style="background-image: url('<%= career_path.image_url %>')">
+            <%= link_to career_path.name, career_path_path(career_path), class: "card-text" %>
+          </div>
+        </li>
       <% end %>
-      <% end %>
-    </ul>
+      </ul>
+    </div>
 
+    <div class="saved-advice-container">
+      <br><h1>All your saved advice</h1><br>
+      <% if @saved_messages.any? %>
+        <div id="savedAdviceCarousel" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-inner">
+            <% @saved_messages.each_with_index do |saved_message, index| %>
+              <div class="carousel-item <%= "active" if index == 0 %>">
+                <div class="saved-advice-card">
+                  <p id="carousel-page-number"><%= index + 1 %></p>
+                  <%= raw(render_markdown(saved_message.content)) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
 
-<h2 class="choose">Choose a career path to ask a question</h2>
+          <!-- Previous -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#savedAdviceCarousel"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
 
-  <div class="cards">
-    <ul>
-    <% @career_paths.each do |career_path| %>
-      <li>
-        <div class="card" style="background-image: url('<%= career_path.image_url %>')">
-          <%= link_to career_path.name, career_path_path(career_path), class: "card-text" %>
+          <!-- Next -->
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#savedAdviceCarousel"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
         </div>
-      </li>
-    <% end %>
-    </ul>
-  </div>
+
+      <% else %>
+        <p>You don't have any saved advice yet.</p>
+      <% end %>
+    </div>
 </div>

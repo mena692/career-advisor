@@ -1,7 +1,5 @@
 <div class="row">
   <div class="col career">
-    <%= link_to "← Back to list of career paths", career_paths_path, class: "back-button" %>
-    <br><br>
     <div class="career-hero" style="background-image: url('<%= @career_path.image_url %>')">
     </div>
     <br>
@@ -14,6 +12,9 @@
       <li class="skill"><%= skill %></li>
       <% end %>
     </ul>
+    <br><br>
+        <%= link_to "← Back to list of career paths", career_paths_path, class: "back-button" %>
+    <br><br>
   </div>
 
   <div class="col-md-3">
