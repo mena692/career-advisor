@@ -1,29 +1,39 @@
-<h1 class="greet-user">Hello <%= current_user.email %>!</h1>
-<br>
-<div class="container">
+<div class="app-screen paths-index" data-controller="path-search">
+  <header class="paths-index__header">
+    <div class="brand">
+      <span class="brand__badge"><i class="fa-solid fa-compass"></i></span>
+      <span class="brand__name">Career Advisor</span>
+    </div>
+    <%= link_to edit_user_registration_path, class: "avatar-badge" do %>
+      <%= current_user.email.first.upcase %>
+    <% end %>
+  </header>
 
-<h2>All your saved advices</h2>
+  <p class="paths-index__date"><%= Date.current.strftime("%A, %-d %B") %></p>
+  <h1 class="paths-index__greeting">Where do you want<br>to go, <%= current_user.email.split("@").first.capitalize %>?</h1>
 
-    <ul>
-      <% if @saved_messages.any?%>
-      <% @saved_messages.each do |saved_message|%>
-      <li><p><%=saved_message.content%></p></li>
-      <% end %>
-      <% end %>
-    </ul>
+  <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text"
+           placeholder="Search career paths"
+           data-path-search-target="input"
+           data-action="input->path-search#filter">
+  </div>
 
+  <div class="section-heading">
+    <h2>Explore paths</h2>
+    <span class="section-heading__count">All <%= @career_paths.size %></span>
+  </div>
 
-<h2 class="choose">Choose a career path to ask a question</h2>
-
-  <div class="cards">
-    <ul>
+  <ul class="path-grid" data-path-search-target="list">
     <% @career_paths.each do |career_path| %>
-      <li>
-        <div class="card" style="background-image: url('<%= career_path.image_url %>')">
-          <%= link_to career_path.name, career_path_path(career_path), class: "card-text" %>
-        </div>
+      <li data-path-search-target="item" data-name="<%= career_path.name.downcase %>">
+        <%= link_to career_path_path(career_path), class: "path-card", style: "background-image: url('#{career_path.image_url}')" do %>
+          <span class="path-card__name"><%= career_path.name %></span>
+        <% end %>
       </li>
     <% end %>
-    </ul>
-  </div>
+  </ul>
 </div>
+
+<%= render "shared/bottom_nav", active: "paths" %>

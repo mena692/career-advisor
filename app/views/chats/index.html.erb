@@ -1,0 +1,29 @@
+<div class="app-screen chats-index">
+  <header class="saved-index__header">
+    <h1>Your chats</h1>
+    <%= link_to edit_user_registration_path, class: "avatar-badge" do %>
+      <%= current_user.email.first.upcase %>
+    <% end %>
+  </header>
+
+  <% if @chats.any? %>
+    <ul class="chat-list chat-list--standalone">
+      <% @chats.each do |chat| %>
+        <li>
+          <%= link_to chat_path(chat), class: "chat-list__item" do %>
+            <span class="chat-list__icon"><i class="fa-regular fa-comment-dots"></i></span>
+            <span class="chat-list__text">
+              <span class="chat-list__title"><%= chat.title %></span>
+              <span class="chat-list__meta"><%= chat.career_path.name %> &middot; <%= time_ago_in_words(chat.updated_at) %> ago</span>
+            </span>
+            <i class="fa-solid fa-chevron-right chat-list__chevron"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty-note">You haven't started any chats yet. Pick a career path to ask your first question.</p>
+  <% end %>
+</div>
+
+<%= render "shared/bottom_nav", active: "chats" %>

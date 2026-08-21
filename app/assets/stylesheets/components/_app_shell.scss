@@ -1,0 +1,231 @@
+
+body {
+  background: $off-white;
+}
+
+.app-screen {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: $off-white;
+  padding: 1.5rem 1.25rem calc(88px + 1.5rem);
+  position: relative;
+}
+
+.path-show,
+.chat-screen {
+  padding: 0;
+}
+
+.path-body {
+  padding-bottom: 2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand__badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, $gold, #FEEEC9);
+  color: $navy;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.brand__name {
+  font-family: $headers-font;
+  font-weight: 700;
+  color: $navy;
+  font-size: 1.1rem;
+}
+
+.avatar-badge {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: $navy;
+  color: $cream;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $headers-font;
+  font-weight: 700;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.avatar-badge:hover {
+  color: $cream;
+  opacity: 0.9;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 1.75rem 0 1rem;
+}
+
+.section-heading h2,
+.section-title {
+  font-family: $headers-font;
+  font-weight: 700;
+  color: $navy;
+  font-size: 1.15rem;
+  margin: 0;
+  text-align: left;
+}
+
+.section-title {
+  margin: 1.75rem 0 1rem;
+}
+
+.section-heading__count {
+  color: $accent-blue;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: $navy;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn--ghost {
+  background: $off-white;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, $gold, #FEEEC9);
+  color: $navy;
+  font-family: $headers-font;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  color: $navy;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pill--saved {
+  background: $cream;
+  color: $gold;
+}
+
+.pill--copy {
+  background: $off-white;
+  color: $muted;
+}
+
+.chip-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.chip {
+  flex-shrink: 0;
+  border: 1px solid $hairline;
+  background: white;
+  color: $ink;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chip.is-active {
+  background: $navy;
+  color: white;
+  border-color: $navy;
+}
+
+.empty-note {
+  color: $muted;
+}
+
+// Bottom tab bar, shown on Paths (home) and Saved screens.
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-top: 1px solid $hairline;
+  display: flex;
+  padding: 0.6rem 0.5rem calc(0.6rem + env(safe-area-inset-bottom));
+  z-index: 20;
+}
+
+.bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  color: $muted;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bottom-nav__item i {
+  font-size: 1.1rem;
+}
+
+.bottom-nav__item.is-active {
+  color: $navy;
+}
+
+.bottom-nav__item:hover {
+  color: $navy;
+}

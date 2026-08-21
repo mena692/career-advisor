@@ -1,4 +1,8 @@
 class ChatsController < ApplicationController
+  def index
+    @chats = current_user.chats.includes(:career_path).order(updated_at: :desc)
+  end
+
   def new
     @chat = Chat.new
   end

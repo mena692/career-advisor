@@ -1,37 +1,65 @@
-<div class="row">
-  <div class="col career">
-    <%= link_to "← Back to list of career paths", career_paths_path, class: "back-button" %>
-    <br><br>
-    <div class="career-hero" style="background-image: url('<%= @career_path.image_url %>')">
-    </div>
-    <br>
-    <h1>What is a <%= @career_path.name %> ?</h1><br>
-    <%= @career_path.description %>
-    <br><br>
-    <h1>Skills required</h1><br>
-    <ul class="skills-list">
-      <% @career_path.skills_array.each do |skill| %>
-      <li class="skill"><%= skill %></li>
+<div class="app-screen path-show">
+  <div class="path-hero" style="background-image: url('<%= @career_path.image_url %>')">
+    <div class="path-hero__bar">
+      <%= link_to career_paths_path, class: "icon-btn" do %>
+        <i class="fa-solid fa-arrow-left"></i>
       <% end %>
-    </ul>
+      <span class="icon-btn" aria-hidden="true">
+        <i class="fa-regular fa-bookmark"></i>
+      </span>
+    </div>
+
+    <div class="path-hero__caption">
+      <span class="path-hero__eyebrow">Career Path</span>
+      <h1 class="path-hero__title"><%= @career_path.name %></h1>
+      <p class="path-hero__meta">
+        <%= pluralize(@career_path.skills_array.size, "core skill") %>
+        &middot; <%= @chats.size %> of your chats
+      </p>
+    </div>
   </div>
 
-  <div class="col-md-3">
-    <h1 class="chats">Chats</h1>
+  <div class="path-body">
+    <details class="path-description">
+      <summary>
+        <span class="truncated-text"><%= truncate(@career_path.description.squish, length: 220, separator: " ") %></span>
+        <span class="read-more-toggle">Read more</span>
+      </summary>
+      <p><%= @career_path.description %></p>
+    </details>
 
-    <div class="mb-4">
-      <% if @chats.any? %>
-        <ul class="chats-list">
-          <% @chats.each do |chat| %>
-            <li><%= link_to chat.title, chat_path(chat) %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        There are no chats yet.
+    <h2 class="section-title">Skills you'll build</h2>
+    <ul class="skill-chip-list">
+      <% @career_path.skills_array.each do |skill| %>
+        <li class="skill-chip"><%= skill %></li>
       <% end %>
-    </div>
-    <%= button_to "New chat",
-                  career_path_chats_path(@career_path),
-                  class: "new-button" %>
+    </ul>
+
+    <h2 class="section-title">Your chats</h2>
+    <% if @chats.any? %>
+      <ul class="chat-list">
+        <% @chats.order(updated_at: :desc).each do |chat| %>
+          <li>
+            <%= link_to chat_path(chat), class: "chat-list__item" do %>
+              <span class="chat-list__icon"><i class="fa-regular fa-comment-dots"></i></span>
+              <span class="chat-list__text">
+                <span class="chat-list__title"><%= chat.title %></span>
+                <span class="chat-list__meta">
+                  <% remaining = Message::MAX_USER_MESSAGES - chat.messages.where(role: "user").count %>
+                  <%= remaining %> <%= "message".pluralize(remaining) %> left &middot; <%= time_ago_in_words(chat.updated_at) %> ago
+                </span>
+              </span>
+              <i class="fa-solid fa-chevron-right chat-list__chevron"></i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="empty-note">There are no chats yet for this path.</p>
+    <% end %>
+
+    <%= button_to career_path_chats_path(@career_path), class: "cta-button" do %>
+      <i class="fa-regular fa-comment-dots"></i> Start a new chat
+    <% end %>
   </div>
 </div>

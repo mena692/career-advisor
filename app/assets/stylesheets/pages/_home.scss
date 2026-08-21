@@ -1,118 +1,83 @@
-// Specific CSS for your home-page
 
-.container {
-  width: 100%;
-  max-width: none;
-  padding: 0;
-}
-
-.cards {
-  width: 100%;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
-}
-
-.cards ul {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-@media (max-width: 992px) {
-  .cards ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 576px) {
-  .cards {
-    padding: 1rem;
-  }
-
-  .cards ul {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .card {
-    height: 220px;
-  }
-}
-
-.card {
-  width: 100%;
-  height: 300px;
-
-  background-size: cover;
-  background-position: center;
-
-  border-radius: 20px;
-  overflow: hidden;
-
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-
+.paths-index__header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-
-  font-size: 22px;
-  font-weight: bolder;
-
-  position: relative;
-  transition: box-shadow 0.5s;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.card::before {
+.paths-index__date {
+  color: $muted;
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+}
+
+.paths-index__greeting {
+  font-family: $headers-font;
+  font-weight: 700;
+  color: $navy;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
+  text-align: left;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: white;
+  border: 1px solid $hairline;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: $muted;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  background: transparent;
+  font-size: 1rem;
+  font-family: $body-font;
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.path-card {
+  display: flex;
+  align-items: flex-end;
+  height: 150px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-color: $navy;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  padding: 0.9rem;
+}
+
+.path-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
-  background: linear-gradient(
-    rgba(0,0,0,0.3),
-    rgba(0,0,0,0.3)
-  );
-
-  border-radius: 20px;
-  transition: opacity 0.5s;
+  background: linear-gradient(to top, rgba(0, 20, 60, 0.75), rgba(0, 20, 60, 0.1) 60%);
 }
 
-.card:hover::before {
-  opacity: 0;
-}
-
-.card-text {
-  background-color: #fff8e1;
-  color: #002d72;
-  border-radius: 20px;
-  text-decoration: none;
-  text-align: center;
-  padding: 1rem;
-
+.path-card__name {
   position: relative;
-  z-index: 1;
-}
-
-.card-text:hover {
-  color: #1e88e5;
-}
-
-li {
-  list-style-type: none;
-}
-
-.col {
-  margin-top: 1rem;
-}
-
-.col-md-3 {
-  margin-top: 1rem;
-}
-
-.greet-user,
-.choose {
-  margin-left: 2rem;
+  color: white;
+  font-family: $headers-font;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
 }

@@ -1,13 +1,25 @@
 <% if message.role == "user" %>
-  <div class="d-flex justify-content-end mb-3">
-    <div class="user-message">
+  <div class="message-row message-row--user">
+    <div class="bubble bubble--user">
       <%= raw(render_markdown(message.content)) %>
     </div>
   </div>
 <% elsif message.role == "assistant" %>
-  <div class="d-flex justify-content-start mb-3" id="<%= dom_id(message) %>">
-    <div class="assistant-message">
-      <%= message.content.present? ? raw(render_markdown(message.content)) : "..." %>
+  <div class="message-row message-row--assistant" id="<%= dom_id(message) %>">
+    <div class="bubble bubble--assistant" data-controller="copy-text">
+      <div data-copy-text-target="source">
+        <%= message.content.present? ? raw(render_markdown(message.content)) : "…" %>
+      </div>
+      <% if message.content.present? %>
+        <div class="bubble__actions">
+          <% if message.saved %>
+            <span class="pill pill--saved"><i class="fa-solid fa-bookmark"></i> Saved</span>
+          <% end %>
+          <button type="button" class="pill pill--copy" data-action="copy-text#copy">
+            <i class="fa-regular fa-copy"></i> <span data-copy-text-target="label">Copy</span>
+          </button>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

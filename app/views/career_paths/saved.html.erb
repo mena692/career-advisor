@@ -1,0 +1,49 @@
+<%
+categories = @saved_messages.map { |m| m.chat.career_path.name.split.first }.uniq.sort
+%>
+<div class="app-screen saved-index" data-controller="chip-filter">
+  <header class="saved-index__header">
+    <h1>Saved advice</h1>
+    <%= link_to edit_user_registration_path, class: "avatar-badge" do %>
+      <%= current_user.email.first.upcase %>
+    <% end %>
+  </header>
+
+  <div class="chip-row">
+    <button type="button" class="chip is-active" data-category="all" data-action="chip-filter#select">
+      All <%= @saved_messages.size %>
+    </button>
+    <% categories.each do |category| %>
+      <button type="button" class="chip" data-category="<%= category.downcase %>" data-action="chip-filter#select">
+        <%= category %>
+      </button>
+    <% end %>
+  </div>
+
+  <% if @saved_messages.any? %>
+    <ul class="saved-list">
+      <% @saved_messages.each do |message| %>
+        <% career_path = message.chat.career_path %>
+        <li data-chip-filter-target="item" data-category="<%= career_path.name.split.first.downcase %>">
+          <div class="saved-card">
+            <div class="saved-card__top">
+              <span class="saved-card__category"><%= career_path.name.upcase %></span>
+              <i class="fa-solid fa-bookmark saved-card__bookmark"></i>
+            </div>
+            <p class="saved-card__excerpt">
+              <%= truncate(strip_tags(render_markdown(message.content)).squish, length: 160, separator: " ") %>
+            </p>
+            <p class="saved-card__meta">
+              From &ldquo;<%= message.chat.title %>&rdquo; &middot;
+              <%= message.created_at.to_date == Date.current ? "today" : message.created_at.strftime("%-d %b") %>
+            </p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty-note">You don't have any saved advice yet. Ask the advisor to save something for you.</p>
+  <% end %>
+</div>
+
+<%= render "shared/bottom_nav", active: "saved" %>

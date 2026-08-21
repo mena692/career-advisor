@@ -1,17 +1,28 @@
 <%= turbo_stream_from @chat %>
 
-<div class="container chat-container">
+<div class="app-screen chat-screen">
+  <header class="chat-screen__header">
+    <%= link_to career_path_path(@chat.career_path), class: "icon-btn icon-btn--ghost" do %>
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
+    <div class="chat-screen__heading">
+      <h1 id="chat_title"><%= @chat.title %></h1>
+      <p><%= @chat.career_path.name %></p>
+    </div>
+    <%= button_to chat_path(@chat),
+                  method: :delete,
+                  class: "icon-btn icon-btn--ghost",
+                  data: { turbo_confirm: "Delete this chat?" } do %>
+      <i class="fa-regular fa-trash-can"></i>
+    <% end %>
+  </header>
 
-  <%= link_to "← #{@chat.career_path.name}",
-              career_path_path(@chat.career_path),
-              class: "chat-back-link" %>
+  <% remaining = Message::MAX_USER_MESSAGES - @chat.messages.where(role: "user").count %>
+  <div class="messages-left-pill">
+    <span><%= remaining %> of <%= Message::MAX_USER_MESSAGES %> messages left in this chat</span>
+  </div>
 
-  <h1 id="chat_title"><%= @chat.title %></h1>
-
-  <hr>
-
-  <div id="messages">
-
+  <div id="messages" class="messages">
     <% if @chat.messages.empty? %>
       <div class="empty-chat-message">
         <p>Start the conversation 👋</p>
@@ -25,5 +36,4 @@
   <div id="new_message_container">
     <%= render "messages/form", chat: @chat, message: @message %>
   </div>
-
 </div>
