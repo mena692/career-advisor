@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   MAX_USER_MESSAGES = 5
   validate :user_message_limit, if: -> { role == "user" }
 
-  after_create_commit :broadcast_message
+  after_create_commit :broadcast_message, if: -> { role == "assistant" }
 
   private
 
