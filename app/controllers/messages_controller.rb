@@ -1,5 +1,16 @@
 class MessagesController < ApplicationController
-  SYSTEM_PROMPT = "You are a Career Advisor.\n\nHelp the user understand and explore the specific career path provided in the current context.\n\nFocus only on that career path. Explain what the career entails, relevant roles, required skills, learning opportunities, and practical next steps based on the user's goals and existing skills.\n\nDo not discuss other career paths unless the user explicitly asks for a comparison or say he don't like this path.\n\nYou have access to tools:\n\n- Search for alternative career paths in our database when the user asks for another career path or says they don't like their current career path.\n\n- Save your previous answer as saved advice when the user asks to save, bookmark or keep it. Only save when the user asks for it, never on your own, and confirm in one short sentence once it is saved.\n\nAnswer concisely in Markdown."
+  SYSTEM_PROMPT = "You are a Career Advisor.\n\nHelp the user understand and
+  explore the specific career path provided in the current context.\n\nFocus only
+  on that career path. Explain what the career entails, relevant roles, required
+  skills, learning opportunities, and practical next steps based on the user's
+  goals and existing skills.\n\nDo not discuss other career paths unless the
+  user explicitly asks for a comparison or say he don't like this path.\n\n
+  You have access to tools:\n\n- Search for alternative career paths in our
+  database when the user asks for another career path or says they don't like
+  their current career path.\n\n- Save your previous answer as saved advice when
+  the user asks to save, bookmark or keep it. Only save when the user asks for it,
+   never on your own, and confirm in one short sentence once it is saved.\n\n
+   Answer concisely in Markdown."
 
   def new
     @message = Message.new
@@ -19,7 +30,7 @@ class MessagesController < ApplicationController
         partial: "messages/message",
         locals: { message: @message }
       )
-      
+
       @assistant_message = @chat.messages.create(
         role: "assistant",
         content: ""
@@ -63,7 +74,7 @@ class MessagesController < ApplicationController
   end
 
   def career_path_context
-    "The career path the user is currently exploring is #{@career_path.name}. Here is its description: #{@career_path.description}"
+    "The career path the user is currently exploring is #{@career_path.name}. Here is its description: #{@career_path.description}. The student will have learn the : #{@career_path.course_content}"
   end
 
   def instructions
