@@ -1,86 +1,171 @@
-@import "components/_new_button";
-
-.career-hero {
-  height: 400px;
-  width: 95%;
-  // margin: 2rem;
-
+.path-hero {
+  height: 340px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-color: $navy;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
 
-  border-radius: 20px;
+.path-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 20, 60, 0.9), rgba(0, 20, 60, 0.15) 65%);
+}
 
+.path-hero__bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.path-hero__caption {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.path-hero__eyebrow {
+  display: block;
+  color: $gold;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.path-hero__title {
+  font-family: $headers-font;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: white;
+  margin: 0 0 0.3rem;
+  text-align: left;
+}
+
+.path-hero__meta {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.path-body {
+  padding: 1.5rem 1.25rem 0;
+}
+
+.path-description {
+  color: $ink;
+  line-height: 1.55;
+}
+
+.path-description summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.path-description summary::-webkit-details-marker {
+  display: none;
+}
+
+.path-description[open] summary .read-more-toggle,
+.path-description[open] summary .truncated-text {
+  display: none;
+}
+
+.path-description[open] p {
+  display: block;
+}
+
+.path-description p {
+  display: none;
+  margin: 0;
+}
+
+.read-more-toggle {
+  color: $accent-blue;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.skill-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-chip {
+  background: linear-gradient(135deg, $navy, $accent-blue);
+  color: $cream;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.chat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.chat-list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: white;
+  border: 1px solid $hairline;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  color: $ink;
+}
+
+.chat-list__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $cream;
+  color: $gold;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  position: relative;
-  overflow: hidden;
+  flex-shrink: 0;
 }
 
-
-.career {
-  margin-left: 2rem
-};
-
-.skills-list {
+.chat-list__text {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 0;
+  flex-direction: column;
 }
 
-.skill {
-  list-style: none;
-  width: fit-content;
-  background: linear-gradient(135deg, #004AAD, #1e88e5);
-  color: #fff8e1;
-  padding: 1rem;
-  border-radius: 10px;
-  transition: transform 0.4s ease;
+.chat-list__title {
+  font-weight: 700;
+  color: $navy;
+  font-size: 0.95rem;
 }
 
-.skill:hover {
-  background: linear-gradient(135deg, #1e88e5, #004AAD);
-  transform: translateY(-3px);
+.chat-list__meta {
+  color: $muted;
+  font-size: 0.8rem;
 }
 
-.back-button {
-  text-decoration: none;
-  width: fit-content;
-  background-color: #1e88e5;
-  color: #fff8e1;
-  padding: 1rem;
-  border-radius: 10px;
+.chat-list__chevron {
+  color: $muted;
 }
 
-.back-button:hover {
-  background-color: #004AAD;
-}
-
-h1 {
-  font-weight: bold;
-}
-
-.chats-list {
-  padding: 0;
-  margin: 0.5rem;
-}
-
-.chats-list li {
-  list-style: none;
-  width: 100%;
-  padding: 0.5rem;
-  // margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-.chats-list li:hover {
-  background-color: #fffbee;
-}
-
-.chats-list li a {
-  text-decoration: none;
-  color: #002d72;
+.chat-list--standalone {
+  margin-top: 0.5rem;
 }

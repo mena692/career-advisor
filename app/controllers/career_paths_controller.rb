@@ -10,4 +10,11 @@ class CareerPathsController < ApplicationController
     @career_path = CareerPath.find(params[:id])
     @chats = @career_path.chats.where(user: current_user)
   end
+
+  def saved
+    @chats = current_user.chats
+    @saved_messages = Message.where(chat: @chats, saved: true)
+                             .includes(chat: :career_path)
+                             .order(created_at: :desc)
+  end
 end

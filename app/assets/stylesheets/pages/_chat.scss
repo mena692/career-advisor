@@ -1,104 +1,204 @@
-.chat-container {
-  max-width: 1200px;
-  margin: 2rem auto;
+
+.chat-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.chat-container h1 {
-  color: #002d72;
-  margin-top: 1rem;
+.chat-screen__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid $hairline;
+  background: white;
 }
 
-.chat-container h5 {
-  color: #1e88e5;
-}
-
-.chat-back-link {
-  color: #002d72;
-  text-decoration: none;
-}
-
-#messages {
-  margin-top: 2rem;
-}
-
-.user-message {
-  background-color: #002d72;
-  color: white;
-  max-width: 70%;
-  padding: 0.75rem 1rem;
-  border-radius: 18px;
-}
-
-.user-message p {
+.chat-screen__header form {
   margin: 0;
 }
 
-.assistant-message {
-  max-width: 85%;
-  background-color: white;
-  padding: 1.25rem;
-  border-radius: 12px;
-  line-height: 1.6;
+.chat-screen__heading {
+  flex: 1;
+  min-width: 0;
 }
 
-.assistant-message h1,
-.assistant-message h2,
-.assistant-message h3 {
-  color: #002d72;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
+.chat-screen__heading h1 {
+  font-family: $headers-font;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $navy;
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.assistant-message p {
-  margin-bottom: 0.8rem;
-}
-
-.assistant-message strong {
-  color: #002d72;
+.chat-screen__heading p {
+  margin: 0;
+  color: $accent-blue;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
-.assistant-message ul,
-.assistant-message ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
+.messages-left-pill {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.25rem 0;
 }
 
-.assistant-message li {
-  margin-bottom: 0.35rem;
+.messages-left-pill span {
+  background: $cream;
+  color: $gold;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
 }
 
-#new_message_container {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ddd;
+.messages {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
-.new-button {
-  background: linear-gradient(135deg, #F9A825, #FFF8E1);
-  color: #004AAD;
-  border-radius: 10px;
-  border-style: none;
-  text-decoration: none;
-  text-align: center;
-  padding: 1rem;
-  transition: transform 0.6s ease;
+.message-row {
+  display: flex;
 }
 
-.new-button:hover {
-  background: linear-gradient(170deg, #F9A825, #FFF8E1);
-  transform: translateY(-3px);
+.message-row--user {
+  justify-content: flex-end;
+}
+
+.message-row--assistant {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 82%;
+  border-radius: 18px;
+  padding: 0.9rem 1.1rem;
+  line-height: 1.55;
+}
+
+.bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.bubble--user {
+  background: $navy;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble--user p {
+  margin: 0;
+}
+
+.bubble--assistant {
+  background: white;
+  border: 1px solid $hairline;
+  color: $ink;
+  border-bottom-left-radius: 4px;
+}
+
+.bubble--assistant h1,
+.bubble--assistant h2,
+.bubble--assistant h3 {
+  font-size: 1rem;
+  color: $navy;
+  margin: 0.9rem 0 0.4rem;
+  text-align: left;
+}
+
+.bubble--assistant h1:first-child,
+.bubble--assistant h2:first-child,
+.bubble--assistant h3:first-child {
+  margin-top: 0;
+}
+
+.bubble--assistant strong {
+  color: $navy;
+}
+
+.bubble--assistant ul,
+.bubble--assistant ol {
+  padding-left: 1.25rem;
+  margin: 0.4rem 0;
+}
+
+.bubble--assistant li {
+  margin-bottom: 0.3rem;
+}
+
+.bubble__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid $hairline;
 }
 
 .empty-chat-message {
   text-align: center;
   padding: 3rem 1rem;
-  color: #666;
+  color: $muted;
+}
+
+// Turbo appends new message partials as siblings of this placeholder
+// instead of replacing it, so hide it as soon as a message shows up.
+#messages:has(.message-row) .empty-chat-message {
+  display: none;
 }
 
 .empty-chat-message p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  color: $ink;
+}
+
+#new_message_container {
+  border-top: 1px solid $hairline;
+  padding: 0.85rem 1.25rem;
+  background: white;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.composer__field {
+  flex: 1;
+  margin: 0;
+}
+
+.composer__input {
+  width: 100%;
+  border: 1px solid $hairline;
+  background: $off-white;
+  border-radius: 999px;
+  padding: 0.75rem 1.1rem;
+  font-family: $body-font;
+  font-size: 0.95rem;
+  resize: none;
+}
+
+.composer__send {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: none;
+  background: $navy;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

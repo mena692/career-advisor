@@ -1,10 +1,10 @@
-<%= simple_form_for [chat, message] do |f| %>
+<%= simple_form_for [chat, message], html: { class: "composer" } do |f| %>
   <%= f.input :content,
             label: false,
             required: true,
-            input_html: { rows: 2 },
-            placeholder: "Ask me anything about this career path..." %>
-  <div class="d-flex justify-content-end">
-    <%= f.button :submit, "Ask LLM", class: "new-button" %>
-</div>
+            wrapper_html: { class: "composer__field" },
+            input_html: { rows: 1, class: "composer__input", placeholder: "Ask about this path..." } %>
+  <button type="submit" class="composer__send">
+    <i class="fa-solid fa-paper-plane"></i>
+  </button>
 <% end %>

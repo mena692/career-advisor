@@ -1,20 +1,52 @@
-<h2>Log in</h2>
+<div class="app-screen login-screen">
+  <%= image_tag "login_illustration.png", class: "login-screen__illustration", alt: "" %>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+  <span class="brand__badge login-screen__badge"><i class="fa-solid fa-compass"></i></span>
+  <h1 class="login-screen__title">Find the path<br>that fits you.</h1>
+  <p class="login-screen__subtitle">
+    <%= pluralize(CareerPath.count, "career path") %>, one advisor.
+    Log in to keep your chats and saved advice.
+  </p>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <div class="login-form__group">
+      <label>Email</label>
+      <div class="login-form__field">
+        <i class="fa-regular fa-envelope"></i>
+        <%= f.input_field :email,
+                    required: false,
+                    autofocus: true,
+                    autocomplete: "email" %>
+      </div>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="login-form__group">
+      <label>Password</label>
+      <div class="login-form__field" data-controller="password-toggle">
+        <i class="fa-solid fa-lock"></i>
+        <%= f.input_field :password,
+                    required: false,
+                    autocomplete: "current-password",
+                    data: { password_toggle_target: "input" } %>
+        <button type="button" class="login-form__eye" data-action="password-toggle#toggle">
+          <i class="fa-regular fa-eye" data-password-toggle-target="icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="login-form__row">
+      <% if devise_mapping.rememberable? %>
+        <label class="login-form__remember">
+          <%= f.check_box :remember_me %> Remember me
+        </label>
+      <% end %>
+      <%= link_to "Forgot password?", new_user_password_path, class: "login-form__forgot" %>
+    </div>
+
+    <%= f.button :submit, "Log in", class: "cta-button login-form__submit" %>
+  <% end %>
+
+  <%= link_to "Create an account", new_user_registration_path, class: "login-form__create" %>
+
+  <p class="login-screen__footer">Career Advisor &middot; Le Wagon project</p>
+</div>

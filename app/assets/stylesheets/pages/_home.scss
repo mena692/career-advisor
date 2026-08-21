@@ -1,182 +1,83 @@
-// Specific CSS for your home-page
 
-// Saved Advice
-
-.saved-advice-container {
-  width: 100%;
-}
-
-.saved-advice-card {
-  background: #fff8e1;
-  color: #002d72;
-
-  padding: 2rem;
-  margin: 1rem 4rem;
-
-  min-height: 250px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 45px;
-  height: 45px;
-
-  top: 50%;
-  transform: translateY(-50%);
-
-  background-color: #002d72;
-  border-radius: 50%;
-
-  opacity: 1;
-}
-
-.carousel-control-prev {
-  left: 10px;
-}
-
-.carousel-control-next {
-  right: 10px;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background-color: #1e88e5;
-}
-
-#carousel-page-number {
-  background: #F9a825;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-weight: bold;
+.paths-index__header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin-left: auto;
-}
-// Career Paths
-
-.container {
-  width: 100%;
-  max-width: none;
-  padding: 0;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.cards {
-  width: 100%;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
+.paths-index__date {
+  color: $muted;
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
 }
 
-.cards ul {
+.paths-index__greeting {
+  font-family: $headers-font;
+  font-weight: 700;
+  color: $navy;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
+  text-align: left;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: white;
+  border: 1px solid $hairline;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: $muted;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  background: transparent;
+  font-size: 1rem;
+  font-family: $body-font;
+}
+
+.path-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  list-style: none;
   padding: 0;
   margin: 0;
-  list-style: none;
 }
 
-@media (max-width: 992px) {
-  .cards ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 576px) {
-  .cards {
-    padding: 1rem;
-  }
-
-  .cards ul {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .card {
-    height: 220px;
-  }
-}
-
-.card {
-  width: 100%;
-  height: 300px;
-
+.path-card {
+  display: flex;
+  align-items: flex-end;
+  height: 150px;
+  border-radius: 16px;
   background-size: cover;
   background-position: center;
-
-  border-radius: 20px;
+  background-color: $navy;
+  text-decoration: none;
   overflow: hidden;
-
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  font-size: 22px;
-
   position: relative;
-  transition: box-shadow 0.5s;
+  padding: 0.9rem;
 }
 
-.card::before {
+.path-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
-  background: linear-gradient(
-    rgba(0,0,0,0.3),
-    rgba(0,0,0,0.3)
-  );
-
-  border-radius: 20px;
-  transition: opacity 0.5s;
+  background: linear-gradient(to top, rgba(0, 20, 60, 0.75), rgba(0, 20, 60, 0.1) 60%);
 }
 
-.card:hover::before {
-  opacity: 0;
-}
-
-.card-text {
-  background: rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(15px);
-  color: #fff8e1 ;
-  border-radius: 20px;
-  text-decoration: none;
-  text-align: center;
-  padding: 1rem;
-
+.path-card__name {
   position: relative;
-  z-index: 1;
-}
-
-.card-text:hover {
-  color: #ffffff;
-}
-
-li {
-  list-style-type: none;
-}
-
-.col {
-  margin-top: 1rem;
-}
-
-.col-md-3 {
-  margin-top: 1rem;
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-h5 {
-  margin-left: 2rem;
+  color: white;
+  font-family: $headers-font;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
 }

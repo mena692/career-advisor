@@ -1,0 +1,155 @@
+.login-screen {
+  background: linear-gradient(160deg, $navy-dark, $navy 55%, $accent-blue 140%);
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-screen__illustration {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 340px;
+  max-width: none;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
+  pointer-events: none;
+}
+
+.login-screen__badge {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.login-screen__title {
+  position: relative;
+  font-family: $headers-font;
+  font-weight: 700;
+  color: white;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  text-align: left;
+}
+
+.login-screen__subtitle {
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0 0 2rem;
+  max-width: 30ch;
+}
+
+.login-form {
+  position: relative;
+}
+
+.login-form__group {
+  margin-bottom: 1.1rem;
+}
+
+.login-form__group label {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.login-form__field {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-form__field input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  color: white;
+  font-family: $body-font;
+  font-size: 1rem;
+}
+
+.login-form__field input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.login-form__eye {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 0;
+}
+
+.login-form__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.login-form__remember {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.login-form__remember input {
+  accent-color: $gold;
+  width: 18px;
+  height: 18px;
+}
+
+.login-form__forgot {
+  color: $gold;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-form__submit {
+  margin-bottom: 1rem;
+}
+
+.login-form__create {
+  position: relative;
+  display: block;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 14px;
+  padding: 1rem;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.login-form__create:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.login-screen__footer {
+  position: relative;
+  margin: auto 0 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}

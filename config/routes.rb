@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "career_paths#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   resources :career_paths, only: [:index, :show] do
     resources :chats, only: [:create]
   end
+  get "saved", to: "career_paths#saved", as: :saved_advice
 
-  resources :chats, only: [:show, :destroy] do
+  resources :chats, only: [:index, :show, :destroy] do
     resources :messages, only: [:create]
   end
 

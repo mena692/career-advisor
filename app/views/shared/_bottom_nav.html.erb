@@ -1,0 +1,18 @@
+<nav class="bottom-nav">
+  <%= link_to career_paths_path, class: "bottom-nav__item #{"is-active" if active == "paths"}" do %>
+    <i class="fa-solid fa-compass"></i>
+    <span>Paths</span>
+  <% end %>
+  <%= link_to chats_path, class: "bottom-nav__item #{"is-active" if active == "chats"}" do %>
+    <i class="fa-regular fa-comments"></i>
+    <span>Chats</span>
+  <% end %>
+  <%= link_to saved_advice_path, class: "bottom-nav__item #{"is-active" if active == "saved"}" do %>
+    <i class="fa-<%= active == "saved" ? "solid" : "regular" %> fa-bookmark"></i>
+    <span>Saved</span>
+  <% end %>
+  <%= link_to edit_user_registration_path, class: "bottom-nav__item #{"is-active" if active == "profile"}" do %>
+    <i class="fa-regular fa-user"></i>
+    <span>Profile</span>
+  <% end %>
+</nav>
