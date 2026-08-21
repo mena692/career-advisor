@@ -13,6 +13,13 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save
+      Turbo::StreamsChannel.broadcast_append_to(
+        @chat,
+        target: "messages",
+        partial: "messages/message",
+        locals: { message: @message }
+      )
+      
       @assistant_message = @chat.messages.create(
         role: "assistant",
         content: ""
